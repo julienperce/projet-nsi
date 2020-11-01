@@ -1,0 +1,53 @@
+header {
+    width : 100%;
+    background: linear-gradient(to right, gray, black);
+    height : 50px;
+}
+h1 {
+    color : white;
+    font-style : italic;
+    text-decoration: underline;
+    font-size : 20px;
+    text-align : center;
+}
+div.buttons {
+    position : fixed;
+    top : 25px;
+    right : 25px;
+}
+.ENbutton {
+    color : white;
+    cursor : pointer;
+    padding : 5px 5px;
+    background-color : red;
+    font-size : 12px;
+}
+.FRbutton {
+    color : white;
+    cursor : pointer;
+    padding : 5px 5px;
+    background-color : blue;
+    font-size : 12px;
+}
+a {
+    color : black;
+    font-style : italic;
+}
+.fileName {
+    font-weight: bold;
+    font-style : normal;
+}
+.submit {
+    cursor : normal;
+}
+legend {
+    font-weight: bolder;
+    text-align:  center;
+}
+.grayscaleButton {
+    color : gray;
+    font-style: italic;
+}
+body {
+    background-color : rgb(182, 179, 179);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" translate="no">
+    <head>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <header>
+            <div class="buttons">   
+                <button class="ENbutton" type="button" onclick="transToEng()" id="transENG">EN</button>
+                <button class="FRbutton" type="button" onclick="transToFr()" id="transFR">FR</button>
+            </div>
+            <h1 id="title">Logiciel de traitement d'images, gratuit sur le web.</h1>
+        </header>
+
+        <h2 id="greet">Bonjour!</h2>
+        <p id="suggest">Commencez par soumettre votre image!</p>
+        <form>
+            <input type="button" id="loadFileXml" value="Selectionner une image" onclick="document.getElementById('fileUpload').click();" /> <!-- We disguise the input button with this button that allows us to have a custom label-->
+            <input class="fileUpload" type="file" style="display:none;" id="fileUpload" name="file" accept="image/png" onchange="updateSize()" single> <!-- Our actual input button for the file (We add the "style=display:none" attribute so that the element is not rendered in -->
+            <p><img id="output" width="200" /></p>
+            <br>
+            <a id="fileQuanConfirm">Nom du fichier soumis: </a> <span id="fileQuantity"></span> 
+            <a class="fileName" id="fileName"></a>
+            <br>
+            <a id="fileSizeConfirm">Taille du fichier soumis: </a><span id="fileSize">0</span>
+            <br>
+            <a id="eligibilityPrompt">Le fichier peut il etre traité par ce logicel?</a>
+            <a id="eligibilityConfirm"></a>
+            <br>
+        </form>
+
+        <fieldset style="display: none" id="editingZone"><legend>File Editing Zone</legend>
+            <button class="grayscaleButton">Grayscale</button>
+            <hr size=10 noshade>
+            <div id="imgEdit"></div>
+        </fieldset>
+
+        <script src="js/main.js"></script>
+        <script src="js/translate.js"></script>
+        <script src="js/checkfile.js"></script>
+    </body>
+</html>
