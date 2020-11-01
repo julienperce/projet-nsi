@@ -39,11 +39,24 @@ window.onload = function()  {
   var fileInput = document.getElementById("fileUpload");
   fileInput.addEventListener('change', loadImage, false); // the third "false" parameter is to specify we do not need any "options" for our eventListener
 }
+var imgurl = "";
 
 function loadImage(e1) {
   var imgName = e1.target.files[0]; // e1.target searches for the "target" event that triggered the "e1" event
   var fr = new FileReader(); // Creating a new FileReader object
   fr.onload = imageHandler;
-  fr.readAsDataURL(imgName)
+  imgurl = fr.readAsDataURL(imgName)
   document.getElementById("editingZone").style = "display: block";
+}
+
+document.getElementById("fileUpload").addEventListener("change", drawToCanvas, false);
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext('2d');
+var img = new Image();
+img.src = `"${imgurl}"`;
+
+function drawToCanvas() {
+  ctx.drawImage(img, 20, 20);
+  console.log("drawing to canvas")
 }

@@ -48,6 +48,10 @@ legend {
     color : gray;
     font-style: italic;
 }
+.canvas {
+    border : 2px solid black;
+    width : 100%;
+}
 body {
     background-color : rgb(182, 179, 179);
 }

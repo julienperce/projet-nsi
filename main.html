@@ -18,7 +18,6 @@
         <form>
             <input type="button" id="loadFileXml" value="Selectionner une image" onclick="document.getElementById('fileUpload').click();" /> <!-- We disguise the input button with this button that allows us to have a custom label-->
             <input class="fileUpload" type="file" style="display:none;" id="fileUpload" name="file" accept="image/png" onchange="updateSize()" single> <!-- Our actual input button for the file (We add the "style=display:none" attribute so that the element is not rendered in -->
-            <p><img id="output" width="200" /></p>
             <br>
             <a id="fileQuanConfirm">Nom du fichier soumis: </a> <span id="fileQuantity"></span> 
             <a class="fileName" id="fileName"></a>
@@ -35,6 +34,8 @@
             <hr size=10 noshade>
             <div id="imgEdit"></div>
         </fieldset>
+        <!-- https://www.youtube.com/watch?v=RbLvOiW0HvU -->
+        <canvas id="canvas" class="canvas"></canvas>
 
         <script src="js/main.js"></script>
         <script src="js/translate.js"></script>
