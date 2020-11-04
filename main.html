@@ -30,15 +30,20 @@
         </form>
 
         <fieldset style="display: none" id="editingZone"><legend>File Editing Zone</legend>
-            <button class="grayscaleButton">Grayscale</button>
+            <h3 id="dimensionsHeader">Image dimensions:<span id="imageDimensions"></span></h3>
+            <div class="grayscale">
+                <button class="grayscaleButton" id="grayscaleButton" onclick="grayscale()">Grayscale</button>
+                <a id="grayscaleSliderCaption" style="display: none">Opacity: </a><input id="grayscaleSlider" style="display: none" type="range" min="1" max="200" value="100"><a id="grayscaleSliderValueText"></a> <!-- value attribute here specifies the starting value of the slider-->
+            </div>
+            <button class="resetButton" id="resetButton">Reset</button>
             <hr size=10 noshade>
-            <div id="imgEdit"></div>
+            <canvas id="canvas" class="canvas"></canvas>
         </fieldset>
         <!-- https://www.youtube.com/watch?v=RbLvOiW0HvU -->
-        <canvas id="canvas" class="canvas"></canvas>
 
         <script src="js/main.js"></script>
         <script src="js/translate.js"></script>
         <script src="js/checkfile.js"></script>
+        <script src="js/filters.js"></script>
     </body>
 </html>
