@@ -1,22 +1,14 @@
+var userEligibleFeed = "✅";
+
 function updateSize() {
   try {
     let nBytes = 0,
-      oFiles = this.files,
+      oFiles = this.files, // files is an array associated with our document, and input type="file" will append the uploaded file to this array
       nFiles = oFiles.length,
       selFile = oFiles[0],
       nmFiles = selFile.name;
     for (let nFileId = 0; nFileId < nFiles; nFileId++) {
-      nBytes += oFiles[nFileId].size;
-    }
-    var userEligibleFeed = "❌";
-    var userEligibleBool = false;
-    lowerFileName = nmFiles.toLowerCase();
-    if (lowerFileName.endsWith(".png")) {
-      userEligibleFeed = "✅";
-      userEligibleBool = true;
-    }
-    else {
-      var userEligibleFeed = "❌";
+      nBytes += oFiles[nFileId].size; // size of file for file in files array
     }
   
     let sOutput = nBytes + " bytes";
@@ -30,33 +22,32 @@ function updateSize() {
 
 document.getElementById("fileUpload").addEventListener("change", updateSize, false);
 
-function imageHandler(e2) { // Our function to display the image in our fieldset
-  var storedImg = document.getElementById("imgEdit");
-  storedImg.innerHTML = '<img src="' + e2.target.result + '">';
+document.getElementById("fileUpload").onchange = function(e) {
+  var img = new Image();
+  img.onload = draw; // Will call the named functions, onload if the image loads 
+  img.onerror = failed; // onerror if the image cannot load
+  img.src = URL.createObjectURL(this.files[0]);
 }
 
-window.onload = function()  {
-  var fileInput = document.getElementById("fileUpload");
-  fileInput.addEventListener('change', loadImage, false); // the third "false" parameter is to specify we do not need any "options" for our eventListener
+function draw() {
+  userEligibleFeed = "✅";
+  document.getElementById("eligibilityConfirm").innerHTML = userEligibleFeed;
+  
+  var canvas = document.getElementById("canvas");
+  canvas.width = this.width; // In this case, this does not refer to the global scope 
+  canvas.height = this.height; // It instead refers to the size attributes of the uploaded image.
+  var ctx = canvas.getContext('2d');
+  ctx.drawImage(this, 0, 0)
+  document.getElementById("editingZone").style = "display : block";
+  displayDimensions();
 }
-var imgurl = "";
 
-function loadImage(e1) {
-  var imgName = e1.target.files[0]; // e1.target searches for the "target" event that triggered the "e1" event
-  var fr = new FileReader(); // Creating a new FileReader object
-  fr.onload = imageHandler;
-  imgurl = fr.readAsDataURL(imgName)
-  document.getElementById("editingZone").style = "display: block";
+function displayDimensions() {
+  document.getElementById("imageDimensions").innerHTML = `${canvas.width}px by ${canvas.height}px`;
 }
 
-document.getElementById("fileUpload").addEventListener("change", drawToCanvas, false);
-
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext('2d');
-var img = new Image();
-img.src = `"${imgurl}"`;
-
-function drawToCanvas() {
-  ctx.drawImage(img, 20, 20);
-  console.log("drawing to canvas")
+function failed() {
+  alert("not a good file type!")
+  userEligibleFeed = "❌";
+  document.getElementById("eligibilityConfirm").innerHTML = userEligibleFeed;
 }
