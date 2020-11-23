@@ -47,7 +47,7 @@ function displayDimensions() {
 }
 
 function failed() {
-  alert("not a good file type!")
+  alert("You have attempted to submit a filetype that is not supported by our editor!");
   userEligibleFeed = "❌";
   document.getElementById("eligibilityConfirm").innerHTML = userEligibleFeed;
 }
